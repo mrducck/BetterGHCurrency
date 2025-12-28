@@ -62,3 +62,4 @@ messages:
   payment-received: "&aYou received &f%amount% &afrom &f%player%"
   rebirth-success: "&a&lREBIRTH SUCCESSFUL! &aYou are now Rebirth &f%rebirths%"
   rebirth-locked: "&cYou need &f%levels% &cmore levels to rebirth!"
+

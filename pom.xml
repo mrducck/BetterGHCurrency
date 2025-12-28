@@ -69,7 +69,7 @@
         </plugins>
         <resources>
             <resource>
-                <directory>../../Documents/GitHub/BetterGHCurrency/src/main/resources</directory>
+                <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
