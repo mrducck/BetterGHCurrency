@@ -1,0 +1,64 @@
+# GenCoreEconomy Configuration
+# Multi-currency economy system
+
+# Database Configuration
+database:
+  # Type: sqlite or mysql
+  type: sqlite
+
+  # MySQL settings (only used if type is mysql)
+  host: localhost
+  port: 3306
+  database: gencore
+  username: root
+  password: ""
+
+# Currency Settings
+currencies:
+  money:
+    name: "Money"
+    symbol: "$"
+    starting-balance: 0.0
+
+  tokens:
+    name: "Tokens"
+    starting-balance: 0
+
+  shards:
+    name: "Shards"
+    starting-balance: 0
+
+  credits:
+    name: "Credits"
+    starting-balance: 0
+
+# Level & Rebirth Settings
+progression:
+  # XP required per level (100 = 1 level per 100 XP)
+  xp-per-level: 100
+
+  # Starting level for new players
+  starting-level: 0
+
+  # Rebirth settings
+  rebirth:
+    # Base level required for first rebirth
+    base-level: 50
+
+    # Additional levels required per rebirth
+    level-increment: 50
+
+    # Reset level on rebirth
+    reset-level: true
+
+    # Reset XP on rebirth
+    reset-xp: true
+
+# Messages
+messages:
+  prefix: "&8[&aGenCore&8] &r"
+  insufficient-funds: "&cYou don't have enough %currency%!"
+  payment-sent: "&aYou paid &f%player% &a%amount%"
+  payment-received: "&aYou received &f%amount% &afrom &f%player%"
+  rebirth-success: "&a&lREBIRTH SUCCESSFUL! &aYou are now Rebirth &f%rebirths%"
+  rebirth-locked: "&cYou need &f%levels% &cmore levels to rebirth!"

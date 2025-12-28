@@ -1,0 +1,87 @@
+name: GenCoreEconomy
+version: 1.0.0
+main: com.gencore.economy.GenCoreEconomy
+api-version: 1.21
+author: Mewb
+description: Multi-currency economy system with Money, Tokens, Shards, Credits, Levels, and Rebirths
+softdepend: [Vault, PlaceholderAPI]
+
+commands:
+  cash:
+    description: Manage your money
+    usage: /cash [bal|pay|give|take|set|reset] [player] [amount]
+    aliases: [money, balance, bal]
+
+  tokens:
+    description: Manage your tokens
+    usage: /tokens [bal|pay|give|take|set|reset] [player] [amount]
+    permission: gencore.tokens
+
+  shards:
+    description: Manage your shards
+    usage: /shards [bal|pay|give|take|set|reset] [player] [amount]
+    permission: gencore.shards
+
+  credits:
+    description: Manage your credits
+    usage: /credits [bal|pay|give|take|set|reset] [player] [amount]
+
+  levels:
+    description: Manage your levels
+    usage: /levels [check|give|take|set|reset|addxp] [player] [amount]
+
+  rebirth:
+    description: Rebirth system
+    usage: /rebirth [info|give|take|set|reset] [player] [amount]
+    permission: gencore.rebirth
+
+permissions:
+  # Player permissions
+  gencore.tokens:
+    description: Allows use of tokens command
+    default: true
+
+  gencore.shards:
+    description: Allows use of shards command
+    default: true
+
+  gencore.rebirth:
+    description: Allows player to rebirth
+    default: true
+
+  # Admin permissions
+  gencore.cash.admin:
+    description: Allows admin commands for cash
+    default: op
+
+  gencore.tokens.admin:
+    description: Allows admin commands for tokens
+    default: op
+
+  gencore.shards.admin:
+    description: Allows admin commands for shards
+    default: op
+
+  gencore.credits.admin:
+    description: Allows admin commands for credits
+    default: op
+
+  gencore.levels.admin:
+    description: Allows admin commands for levels
+    default: op
+
+  gencore.rebirth.admin:
+    description: Allows admin commands for rebirths
+    default: op
+
+  # Master admin permission
+  gencore.admin:
+    description: Grants all admin permissions
+    default: op
+    children:
+      gencore.cash.admin: true
+      gencore.tokens.admin: true
+      gencore.shards.admin: true
+      gencore.credits.admin: true
+      gencore.levels.admin: true
+      gencore.rebirth.admin: true
