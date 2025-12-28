@@ -7,7 +7,6 @@ import java.util.UUID;
 
 /**
  * API for managing player Levels
- *
  * Usage Example:
  * LevelAPI levelAPI = GenCoreEconomy.getInstance().getLevelAPI();
  * levelAPI.addLevels(player.getUniqueId(), 5);

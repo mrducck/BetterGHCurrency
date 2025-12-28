@@ -77,7 +77,7 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
         }
 
         switch (params.toLowerCase()) {
-            // MONEY PLACEHOLDERS
+
             case "money":
                 return plugin.getMoneyAPI().getFormattedMoney(player.getUniqueId());
             case "money_raw":
@@ -86,7 +86,7 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
                 return "$" + NumberFormatter.formatAbbreviated(
                         plugin.getMoneyAPI().getMoney(player.getUniqueId()));
 
-            // TOKEN PLACEHOLDERS
+
             case "tokens":
                 return NumberFormatter.formatNumber(
                         plugin.getTokenAPI().getTokens(player.getUniqueId()));
@@ -96,7 +96,7 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
                 return NumberFormatter.formatAbbreviated(
                         plugin.getTokenAPI().getTokens(player.getUniqueId()));
 
-            // SHARD PLACEHOLDERS
+
             case "shards":
                 return NumberFormatter.formatNumber(
                         plugin.getShardAPI().getShards(player.getUniqueId()));
@@ -106,7 +106,7 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
                 return NumberFormatter.formatAbbreviated(
                         plugin.getShardAPI().getShards(player.getUniqueId()));
 
-            // CREDIT PLACEHOLDERS
+
             case "credits":
                 return NumberFormatter.formatNumber(
                         plugin.getCreditAPI().getCredits(player.getUniqueId()));
@@ -116,7 +116,7 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
                 return NumberFormatter.formatAbbreviated(
                         plugin.getCreditAPI().getCredits(player.getUniqueId()));
 
-            // LEVEL PLACEHOLDERS
+
             case "level":
                 return String.valueOf(plugin.getLevelAPI().getLevel(player.getUniqueId()));
             case "experience":
@@ -128,7 +128,7 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
                 return NumberFormatter.formatAbbreviated(
                         plugin.getLevelAPI().getExperience(player.getUniqueId()));
 
-            // REBIRTH PLACEHOLDERS
+
             case "rebirths":
             case "rebirth":
                 return String.valueOf(plugin.getRebirthAPI().getRebirths(player.getUniqueId()));

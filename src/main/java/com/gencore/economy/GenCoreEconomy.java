@@ -14,7 +14,7 @@ public class GenCoreEconomy extends JavaPlugin {
     private static GenCoreEconomy instance;
     private DatabaseManager databaseManager;
 
-    // API instances
+
     private MoneyAPI moneyAPI;
     private TokenAPI tokenAPI;
     private ShardAPI shardAPI;
@@ -28,14 +28,14 @@ public class GenCoreEconomy extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        // Save default config
+
         saveDefaultConfig();
 
-        // Initialize database
+
         databaseManager = new DatabaseManager(this);
         databaseManager.initialize();
 
-        // Initialize APIs
+
         moneyAPI = new MoneyAPI(this);
         tokenAPI = new TokenAPI(this);
         shardAPI = new ShardAPI(this);
@@ -43,7 +43,6 @@ public class GenCoreEconomy extends JavaPlugin {
         levelAPI = new LevelAPI(this);
         rebirthAPI = new RebirthAPI(this);
 
-        // Register APIs as services
         getServer().getServicesManager().register(MoneyAPI.class, moneyAPI, this, ServicePriority.Highest);
         getServer().getServicesManager().register(TokenAPI.class, tokenAPI, this, ServicePriority.Highest);
         getServer().getServicesManager().register(ShardAPI.class, shardAPI, this, ServicePriority.Highest);
@@ -51,20 +50,20 @@ public class GenCoreEconomy extends JavaPlugin {
         getServer().getServicesManager().register(LevelAPI.class, levelAPI, this, ServicePriority.Highest);
         getServer().getServicesManager().register(RebirthAPI.class, rebirthAPI, this, ServicePriority.Highest);
 
-        // Register commands
+
         registerCommands();
 
-        // Register listeners
+
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
 
-        // Hook into Vault
+
         if (getServer().getPluginManager().getPlugin("Vault") != null) {
             vaultHook = new VaultHook(this);
             vaultHook.hook();
             getLogger().info("Hooked into Vault successfully!");
         }
 
-        // Hook into PlaceholderAPI
+
         if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new PlaceholderAPIHook(this).register();
             getLogger().info("Hooked into PlaceholderAPI successfully!");
@@ -95,7 +94,7 @@ public class GenCoreEconomy extends JavaPlugin {
         getCommand("rebirth").setExecutor(new RebirthCommand(this));
     }
 
-    // Getters
+
     public static GenCoreEconomy getInstance() {
         return instance;
     }

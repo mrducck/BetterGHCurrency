@@ -25,7 +25,7 @@ public class DatabaseManager {
     private HikariDataSource dataSource;
     private final ExecutorService asyncExecutor;
 
-    // Cache for quick lookups
+
     private final ConcurrentHashMap<UUID, PlayerData> cache = new ConcurrentHashMap<>();
 
     public DatabaseManager(GenCoreEconomy plugin) {
@@ -106,10 +106,7 @@ public class DatabaseManager {
         }
     }
 
-    /**
-     * Load player data asynchronously from database or create new entry
-     * @return CompletableFuture with PlayerData
-     */
+
     public CompletableFuture<PlayerData> loadPlayerDataAsync(UUID uuid) {
         // Check cache first (synchronously for speed)
         if (cache.containsKey(uuid)) {
@@ -153,9 +150,7 @@ public class DatabaseManager {
         }, asyncExecutor);
     }
 
-    /**
-     * Synchronous version for backward compatibility
-     */
+
     public PlayerData loadPlayerData(UUID uuid) {
         return loadPlayerDataAsync(uuid).join();
     }
@@ -174,10 +169,7 @@ public class DatabaseManager {
         }
     }
 
-    /**
-     * Save player data asynchronously to database
-     * @return CompletableFuture that completes when save is done
-     */
+
     public CompletableFuture<Void> savePlayerDataAsync(UUID uuid, PlayerData data) {
         return CompletableFuture.runAsync(() -> {
             String sql = "UPDATE player_economy SET money = ?, tokens = ?, shards = ?, " +
@@ -203,9 +195,7 @@ public class DatabaseManager {
         }, asyncExecutor);
     }
 
-    /**
-     * Synchronous version for backward compatibility
-     */
+
     public void savePlayerData(UUID uuid, PlayerData data) {
         savePlayerDataAsync(uuid, data).join();
     }
@@ -222,13 +212,8 @@ public class DatabaseManager {
         return CompletableFuture.allOf(futures);
     }
 
-    // ============================================
-    // CURRENCY OPERATIONS WITH LAMBDA UPDATES
-    // ============================================
 
-    /**
-     * Generic currency getter with caching
-     */
+
     private <T> T getCurrency(UUID uuid, java.util.function.Function<PlayerData, T> extractor) {
         return extractor.apply(loadPlayerData(uuid));
     }
@@ -242,7 +227,7 @@ public class DatabaseManager {
         savePlayerDataAsync(uuid, data); // Async save
     }
 
-    // Money operations
+
     public double getMoney(UUID uuid) {
         return getCurrency(uuid, data -> data.money);
     }
@@ -251,7 +236,7 @@ public class DatabaseManager {
         setCurrency(uuid, data -> data.money = amount);
     }
 
-    // Token operations
+
     public long getTokens(UUID uuid) {
         return getCurrency(uuid, data -> data.tokens);
     }
@@ -260,7 +245,7 @@ public class DatabaseManager {
         setCurrency(uuid, data -> data.tokens = amount);
     }
 
-    // Shard operations
+
     public long getShards(UUID uuid) {
         return getCurrency(uuid, data -> data.shards);
     }
@@ -269,7 +254,7 @@ public class DatabaseManager {
         setCurrency(uuid, data -> data.shards = amount);
     }
 
-    // Credit operations
+
     public long getCredits(UUID uuid) {
         return getCurrency(uuid, data -> data.credits);
     }
@@ -278,7 +263,7 @@ public class DatabaseManager {
         setCurrency(uuid, data -> data.credits = amount);
     }
 
-    // Level operations
+
     public int getLevel(UUID uuid) {
         return getCurrency(uuid, data -> data.level);
     }
@@ -295,7 +280,7 @@ public class DatabaseManager {
         setCurrency(uuid, data -> data.experience = xp);
     }
 
-    // Rebirth operations
+
     public int getRebirths(UUID uuid) {
         return getCurrency(uuid, data -> data.rebirths);
     }
@@ -304,25 +289,19 @@ public class DatabaseManager {
         setCurrency(uuid, data -> data.rebirths = rebirths);
     }
 
-    /**
-     * Get cached data without database access
-     */
+
     public PlayerData getCachedData(UUID uuid) {
         return cache.get(uuid);
     }
 
-    /**
-     * Update cache and save asynchronously
-     */
+
     public CompletableFuture<Void> updateAndSave(UUID uuid, java.util.function.Consumer<PlayerData> updater) {
         PlayerData data = cache.computeIfAbsent(uuid, PlayerData::new);
         updater.accept(data);
         return savePlayerDataAsync(uuid, data);
     }
 
-    /**
-     * Player data storage class
-     */
+
     public static class PlayerData {
         public double money;
         public long tokens;

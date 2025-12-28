@@ -6,8 +6,6 @@ import com.gencore.economy.database.DatabaseManager;
 import java.util.UUID;
 
 /**
- * API for managing player Credits
- *
  * Usage Example:
  * CreditAPI creditAPI = GenCoreEconomy.getInstance().getCreditAPI();
  * creditAPI.addCredits(player.getUniqueId(), 100L);
