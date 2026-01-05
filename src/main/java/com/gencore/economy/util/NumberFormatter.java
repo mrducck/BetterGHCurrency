@@ -18,7 +18,7 @@ public class NumberFormatter {
         double multiplier = 1;
         String numberPart = input;
 
-        // Check for suffix
+
         if (input.endsWith("k")) {
             multiplier = 1_000;
             numberPart = input.substring(0, input.length() - 1);
