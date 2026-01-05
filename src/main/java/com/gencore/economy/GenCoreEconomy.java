@@ -13,7 +13,8 @@ public class GenCoreEconomy extends JavaPlugin {
 
     private static GenCoreEconomy instance;
     private DatabaseManager databaseManager;
-
+    
+    // Suicide is a better alternative to reformatting this btw - mewb
 
     private MoneyAPI moneyAPI;
     private TokenAPI tokenAPI;
